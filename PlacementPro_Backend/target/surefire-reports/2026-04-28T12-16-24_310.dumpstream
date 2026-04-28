@@ -1,0 +1,5 @@
+# Created at 2026-04-28T12:16:24.683
+Boot Manifest-JAR contains absolute paths in classpath 'D:\PlacementPro newwwww(6)\PlacementPro newwwww\PlacementPro_Backend\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
