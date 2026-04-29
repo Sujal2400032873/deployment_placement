@@ -56,38 +56,37 @@ public class SecurityConfig {
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+public CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration configuration = new CorsConfiguration();
+    CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of(
-                "https://deployment-placement.vercel.app",
-                "http://localhost:5173",
-                "http://127.0.0.1:5173"
-        ));
+    configuration.setAllowedOriginPatterns(List.of(
+            "https://deployment-placement.vercel.app",
+            "https://*.vercel.app",      // CRITICAL FIX
+            "http://localhost:5173",
+            "http://127.0.0.1:5173"
+    ));
 
-        configuration.setAllowedMethods(List.of(
-                "GET",
-                "POST",
-                "PUT",
-                "DELETE",
-                "PATCH",
-                "OPTIONS"
-        ));
+    configuration.setAllowedMethods(List.of(
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
+    ));
 
-        configuration.setAllowedHeaders(List.of("*"));
+    configuration.setAllowedHeaders(List.of("*"));
 
-        configuration.setAllowCredentials(true);
+    configuration.setAllowCredentials(true);
 
-        configuration.setMaxAge(3600L);
+    UrlBasedCorsConfigurationSource source =
+            new UrlBasedCorsConfigurationSource();
 
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
 
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
-    }
+    return source;
+}
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
