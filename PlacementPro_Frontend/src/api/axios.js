@@ -1,38 +1,65 @@
-import axios from 'axios';
+import axios from "axios";
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost:8080/api";
+
+console.log("API URL:", API_BASE_URL);
 
 const API = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: API_BASE_URL,
   withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-// Request interceptor to add JWT token
+// Request interceptor — attach JWT
 API.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('placementProToken');
+    const token = localStorage.getItem("placementProToken");
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-// Response interceptor to handle auth errors
+// Response interceptor — handle auth errors
 API.interceptors.response.use(
   (response) => response,
+
   (error) => {
     if (error.response?.status === 401) {
-      // Only redirect if on a protected page (not login/register)
       const currentPath = window.location.pathname;
-      const isPublicPage = ['/login', '/register', '/'].includes(currentPath);
-      
-      if (!isPublicPage) {
-        console.warn('Unauthorized access - redirecting to login');
-        localStorage.removeItem('placementProToken');
-        localStorage.removeItem('placementProUser');
-        window.location.href = '/login';
+
+      const isPublicPage = [
+        "/",
+        "/login",
+        "/register"
+      ].includes(currentPath);
+
+      const hasToken =
+        localStorage.getItem("placementProToken");
+
+      // Only clear token if user was logged in
+      if (hasToken) {
+        localStorage.removeItem("placementProToken");
+        localStorage.removeItem("placementProUser");
+      }
+
+      if (!isPublicPage && hasToken) {
+        console.warn(
+          "Unauthorized — redirecting to login"
+        );
+
+        window.location.href = "/login";
       }
     }
+
     return Promise.reject(error);
   }
 );

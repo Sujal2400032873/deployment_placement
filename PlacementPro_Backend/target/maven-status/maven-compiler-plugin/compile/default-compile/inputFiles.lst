@@ -66,7 +66,6 @@ D:\PlacementPro newwwww(6)\PlacementPro newwwww\PlacementPro_Backend\src\main\ja
 D:\PlacementPro newwwww(6)\PlacementPro newwwww\PlacementPro_Backend\src\main\java\com\placementpro\backend\controller\JobController.java
 D:\PlacementPro newwwww(6)\PlacementPro newwwww\PlacementPro_Backend\src\main\java\com\placementpro\backend\dto\EmployerProfileDTO.java
 D:\PlacementPro newwwww(6)\PlacementPro newwwww\PlacementPro_Backend\src\main\java\com\placementpro\backend\entity\ContactMessage.java
-D:\PlacementPro newwwww(6)\PlacementPro newwwww\PlacementPro_Backend\src\main\java\com\placementpro\backend\config\CorsConfig.java
 D:\PlacementPro newwwww(6)\PlacementPro newwwww\PlacementPro_Backend\src\main\java\com\placementpro\backend\entity\Role.java
 D:\PlacementPro newwwww(6)\PlacementPro newwwww\PlacementPro_Backend\src\main\java\com\placementpro\backend\dto\OfficerDashboardDTO.java
 D:\PlacementPro newwwww(6)\PlacementPro newwwww\PlacementPro_Backend\src\main\java\com\placementpro\backend\security\AuthEntryPointJwt.java
